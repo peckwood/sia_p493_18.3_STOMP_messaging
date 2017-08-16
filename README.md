@@ -11,16 +11,11 @@
       	2. start Rabbit service installed
       	3. enable rabbitmq_stomp plugin with command `D:\programs\RabbitMQ Server\rabbitmq_server-3.6.10\sbin>rabbitmq-plugins enable rabbitmq_stomp` [reference](https://www.rabbitmq.com/stomp.html)
       	4. Change the simple broker's one line config to multiple lines in method `configureMessageBroker()`
-      	5. ​
-
-
 
 
 
 A lot of SIA4's configuration, like JS code about subscribe to a url may be wrong, so if different, follow the online demos'
 
-The guide I followed as a guide for calculator
-
-http://www.concretepage.com/spring-4/spring-4-websocket-sockjs-stomp-tomcat-example
-
-> Official reference: https://docs.spring.io/spring/docs/current/spring-framework-reference/html/websocket.html
+> [The guide I followed as a guide for calculator](http://www.concretepage.com/spring-4/spring-4-websocket-sockjs-stomp-tomcat-example)
+>
+> [Official reference](https://docs.spring.io/spring/docs/current/spring-framework-reference/html/websocket.html)
