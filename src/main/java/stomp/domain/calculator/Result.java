@@ -1,4 +1,4 @@
-package stomp.domain;
+package stomp.domain.calculator;
 
 public class Result {
 	private String result;

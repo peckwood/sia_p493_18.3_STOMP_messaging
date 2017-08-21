@@ -1,4 +1,4 @@
-package stomp.domain;
+package stomp.domain.calculator;
 
 public class CalcInput {
 	private int num1;

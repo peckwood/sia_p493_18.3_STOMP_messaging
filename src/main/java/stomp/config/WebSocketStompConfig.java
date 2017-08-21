@@ -16,18 +16,19 @@ public class WebSocketStompConfig extends AbstractWebSocketMessageBrokerConfigur
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
 		registry.addEndpoint("/macro").withSockJS();
 		registry.addEndpoint("/add").withSockJS();
+		registry.addEndpoint("/hello").withSockJS();		
+		registry.addEndpoint("/tweet").withSockJS();
 	}
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
-		//does not work when using StompBrokerRelay
 		registry.setApplicationDestinationPrefixes("/awesomeApp");
 		
 //		registry.enableSimpleBroker("/topic", "/queue");
 		
 		registry.enableStompBrokerRelay("/topic", "/queue")
 		.setRelayHost("localhost")
-		//.setRelayPort(61613)
+		.setRelayPort(61613)
 		.setClientLogin("guest")
 		.setClientPasscode("guest");
 	}

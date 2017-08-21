@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Chat</title>
+<script th:src="@{/webjars/sockjs-client/0.3.4-2/sockjs.min.js}"></script>
+<script th:src="@{/webjars/jquery/2.0.3/jquery.min.js}"></script>
+<script th:src="@{/webjars/stomp-websocket/2.3.4/lib/stomp.min.js}"></script>
+</head>
+<body>
+	<button onclick="sayHello()">Say Hello</button>
+
+	<script th:inline="javascript">
+	  var contextPath = [[@{/}]];
+	  var sock = new SockJS(contextPath +'hello');
+
+      var stomp = Stomp.over(sock);
+
+      var shout = {
+    		  'message' : 'Raiden'
+      };
+      
+      var onConnect = function(){
+    	  stomp.subscribe("/queue/hello"), function(returnedShout){
+    		  console.log("returned Shout is: " + returnedShout);
+    	  }
+      }
+      
+      stomp.connect('guest', 'guest', onConnect);
+      
+      function sayHello(){
+    	  stomp.send("/awesomeApp/hello", {}, JSON.stringify(shout));
+      }
+     
+      </script>
+
+	<div id="output"></div>
+</body>
+</html>

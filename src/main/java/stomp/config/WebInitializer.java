@@ -4,11 +4,13 @@ import javax.servlet.ServletRegistration.Dynamic;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import stomp.sendFromAnywhere.SecurityConfig;
+
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] {};
+		return new Class<?>[] {SecurityConfig.class};
 	}
 
 	@Override

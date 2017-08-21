@@ -8,9 +8,9 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 
-import stomp.domain.CalcInput;
-import stomp.domain.Result;
 import stomp.domain.Shout;
+import stomp.domain.calculator.CalcInput;
+import stomp.domain.calculator.Result;
 
 @Controller
 public class AwesomeController {
@@ -50,6 +50,13 @@ public class AwesomeController {
 		Thread.sleep(1000);
 		Result result = new Result(input.getNum1()+"+"+input.getNum2()+"="+(input.getNum1()+input.getNum2()));
 		return result;
+	}
+	
+	@SubscribeMapping("/hello")
+	//@SendTo("/queue/hello")
+	public Shout sayHello(Shout shout){
+		System.out.println("sayHello Received message"  );
+		return new Shout("Hello " + shout.getMessage());
 	}
 	
 }

@@ -16,7 +16,7 @@ import org.thymeleaf.templateresolver.TemplateResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("stomp.controller")
+@ComponentScan("stomp.controller, stomp.sendFromAnywhere")
 @EnableScheduling
 public class WebConfig extends WebMvcConfigurerAdapter{
 
@@ -32,6 +32,8 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 		registry.addViewController("/").setViewName("home");
 		registry.addViewController("/macro").setViewName("macro");
 		registry.addViewController("/calculator").setViewName("calculator");
+		registry.addViewController("/hello").setViewName("hello");
+		registry.addViewController("/chat").setViewName("chat");
 	}
 	
 	// THYMELEAF CONFIG
