@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageExceptionHandler;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.annotation.SendToUser;
+import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.stereotype.Controller;
 
 import stomp.domain.Twittr;
@@ -44,5 +45,25 @@ public class UserMessageController {
 		logger.error("Error handling message: " + t.getMessage());
 		System.out.println("Error handling message: " + t.getMessage());
 		return new Notification("You have an error: " + t.getMessage());
+	}
+	
+	/*
+	 * @SubscribeMapping method is invoked whenever a client subscribes to /awesomeApp/tweet
+	 * 
+	 * By default, @Sub methods annotated with @Sub will have their returned object sent 
+	 * directly to the client without going through the broker, unless it is also annotated with @SendTo
+	 * 
+	 * The primary use case for @SubscribeMapping is to implement a asynchronous request-reply pattern. 
+	 */
+	@SubscribeMapping("/tweet")
+	public Notification handleTweetSubscribtion() throws Exception{
+		return new Notification("You have subscribed to tweet [" + new Date());
+	}
+	
+	//Only application prefixed subscriptions(like /awesomeApp/tweet) are processed, no /topic/subscriptions
+	//so if this is to be invoked, subscription destination should be /awesomeApp/tweetfeed
+	@SubscribeMapping("/tweetfeed")
+	public Notification handleTweetfeedSubscribtion() throws Exception{
+		return new Notification("You have subscribed to tweetfeed [" + new Date());
 	}
 }

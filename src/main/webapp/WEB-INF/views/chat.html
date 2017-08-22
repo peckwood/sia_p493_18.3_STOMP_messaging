@@ -35,6 +35,7 @@
         stomp.subscribe("/topic/tweetfeed", handleTweet);
         stomp.subscribe("/user/queue/notifications", handleNotification);
         stomp.subscribe("/user/queue/errors", handleError);
+        stomp.subscribe("/awesomeApp/tweet", handleNotification);
       });
       
       function handleTweet(message) {
